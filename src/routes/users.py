@@ -6,8 +6,8 @@ from datetime import timedelta
 
 user = Blueprint('users', __name__)
 
-@user.route('/signup', methods=['POST'])
-def signup():
+@user.route('/register', methods=['POST'])
+def register():
     data = request.json
     new_user = User(**data)
     new_user.set_password(data['password'])
