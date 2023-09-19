@@ -9,6 +9,10 @@ user = Blueprint('users', __name__)
 @user.route('/register', methods=['POST'])
 def register():
     data = request.json
+    user = User.query.filter_by(email=data['email']).first()
+    if user:
+        return jsonify({"message": "email taken"}), 400
+
     new_user = User(**data)
     new_user.set_password(data['password'])
     db.session.add(new_user)
@@ -25,10 +29,10 @@ def refresh():
 @user.route('/login', methods=['POST'])
 def login():
     data = request.json
-    print(data)
+
     user = User.query.filter_by(email=data['email']).first()
     if user and user.check_password(data['password']):
-        print('yep')
+
         token = create_access_token(identity=user.email, expires_delta=timedelta(days=30))
         refresh_token = create_refresh_token(identity=user.email, expires_delta=timedelta(days=365))
 
