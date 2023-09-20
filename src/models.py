@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     fullname = db.Column(db.String(80), unique=False, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    code = db.Column(db.String(40), unique=False, nullable=False)
+    code = db.Column(db.String(40), unique=False)
 
     def to_json(self):
         return {
