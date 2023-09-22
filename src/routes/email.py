@@ -12,7 +12,7 @@ email = Blueprint('email', __name__,
 
 
 
-@email.route("/send-email", methods=['POST'])
+@email.route("/send_email", methods=['POST'])
 def send_email():
     json_data = request.json
     msg_body = render_template('/pages/{}.html'.format(json_data['template']),

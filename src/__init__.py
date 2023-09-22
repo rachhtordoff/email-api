@@ -7,6 +7,7 @@ app.config.from_object(Config)
 app.config['JWT_SECRET_KEY'] =  Config.JWT_SECRET_KEY
 jwt = JWTManager(app)
 
+app.config['MAIL_DEBUG'] = True  # or False
 
 def register_blueprint(app):
     from src.routes.general import general_blueprint
